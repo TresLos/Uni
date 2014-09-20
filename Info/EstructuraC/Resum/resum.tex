@@ -1,0 +1,80 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+
+% Opino que la vida sense color no es vida
+\usepackage{color}
+\newcommand{\blue}[1]{{\color{blue}#1}}
+\newcommand{\red}[1]{{\color{red}#1}}
+
+\begin{document}
+\tableofcontents\newpage
+
+\part{\red{D}efinicions}
+\begin{itemize}
+\item 1 Nibble = 4 bits
+\item[K] $\to 10^3, 2^{10}$
+\item[M] $\to 10^6, 2^{20}$
+\item[G] $\to 10^9, 2^{30}$
+\item Prestacions
+	\begin{itemize}
+	\item Freqüència \red{Hz}
+	\item Transistors
+	\item Memòria principal
+		\subitem Grandària = \red{n} posicions $\times$ \red{n} Grandària de la posició
+	\item Amplada de Banda (bus)
+		\subitem \blue{Freqüència $\times$ \red{n} bits del bus}
+	\item Programes prova
+		\subitem És aquí que es descobreix quin va millor realment
+	\end{itemize}
+\item Cicle de Rellotge
+	\subitem \blue{Quan tarda el rellotge en fer tot un cicle}
+\item Cicle d'instrucció
+	\subitem \blue{Quan tarda en fer la instrucció demanada}
+\item Cicle de bus
+	\subitem \blue{Temps que tarda en enviar dades}
+\end{itemize}
+
+\part{Parts d'un ordinador}
+\section{Bàsic}
+\begin{itemize}
+\item CPU
+	\begin{itemize}
+	\item UC \blue{-unitat de control-}
+	\item UP \blue{-unitat d'execució-}
+	\end{itemize}
+\item Memòria Principal
+\item Dispositius d'E/S
+\end{itemize}
+
+\part{\red{E}volució}
+\section{Microprocessadors}
+\begin{itemize}
+\item[1er] 4004
+	\begin{itemize}
+	\item Bus 4 bits
+	\item Direcció 12 bits
+	\end{itemize}
+\item 1971 - 2011
+	\begin{itemize}
+	\item $10^6$ Transistors \blue{2.300 - 2.270.000.000}
+	\item $10^7$ Freqüència \blue{100 kHz - 4 GHz}
+	\end{itemize}
+\item Llei de Moore -1.965-
+	\subitem 24 mesos $\to$  2 $\times$ transistors
+\item Amortir els dissenys
+	\begin{itemize}
+	\item High Performance
+	\item Low Power
+	\item Traditional Embedded
+	\end{itemize}
+\end{itemize}
+
+\section{Factor tecnològic}
+\begin{itemize}
+\item Transistor \blue{vàlvules i} \red{relets}
+\end{itemize}
+\end{document}
+
+Vaig per el EC 01 - 2
+coses a comprovar diu el profe José Bosch: 1024 x 1024 = 2^10... rar de collons
