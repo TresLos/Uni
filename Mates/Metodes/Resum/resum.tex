@@ -1,0 +1,72 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+
+% Opino que la vida sense color no es vida
+\usepackage{color}
+\newcommand{\blue}[1]{{\color{blue}#1}}
+\newcommand{\red}[1]{{\color{red}#1}}
+
+% Matemàtic
+\usepackage{dsfont} % |Z
+\newcommand{\Z}{\mathds{Z}}
+
+\begin{document}
+Tot = Errar/ Lineal //parcial// Interpolar, derivar... / zeros// Fi\\
+Elden \& Wittmeyer-Koch
+1 Intro, 2 Error, 4 Zeros, 5 6 7 Interp Deriv Integracio, 8 Al lineal
+\tableofcontents
+
+% Part més important, bàsic
+\part{\red{D}efinicions}
+\section{Aproximacions}
+\begin{itemize}
+\item $$y'(x) = \lim_{h \to 0} \frac{y(x + h) - y(x)}{h}$$
+	\begin{itemize}
+	\item $$y'(x) \approx \frac{y(x + h) - y(x)}{h}$$
+	\item $$f(x + h) \approx f(x) + h\cdot f'(x)$$
+	\end{itemize}
+\item $$y''(x) \approx \frac{y(x + h) - 2y(x) + y(x - h)}{h^2}$$
+\end{itemize}
+\section{Error}
+\begin{itemize}
+\item Problema real
+\item Formulació matemàtica
+\item Mètode numèric
+\item Programa, ordinador
+\item Error de representació
+	\begin{itemize}
+	\item int
+		\begin{itemize}
+		\item $4\cdot 8 = 32$
+		\item $2^{32}, v \in [-2^{31}, 2^{31}-1] \cap \Z$
+		\item $v \in \phantom{a}^\Z\! / _{(2^{32})}$
+		\end{itemize}
+	\item float
+		\begin{itemize}
+		\item 32 bits
+		\item[$s$] 1 signe
+		\item $s \in \{0, 1\}$
+		\item[$e$] 8 exponent
+		\item $e = \sum e_i 2^i \quad \in [0, 255] \cap \Z$
+		\item[$f$] 23 part fraccionaria
+		\item $0.f \equiv \sum f_i2^{-i}$
+		\item Descodificació
+			\begin{itemize}
+			\item[si] $e \neq 0, 255$
+				\subitem $v = (-1)^s (1.f)2^{e-127}$
+			\item[si] $e = 255$
+				\subitem[si] $f = 0$
+					\subsubitem $v = (-1)^s \cdot \infty$
+				\subitem[si] $f \neq 0$
+					\subsubitem $v =$ NaN \blue{Not a Number}
+			\item[si] $e = 0$
+				\subitem[si] $f \neq 0$
+					\subsubitem $v = (-1)^s(0.f)(2^{-126})$
+				\subitem[si] $f = 0$
+					\subsubitem $v = (-1)^s \cdot 0$
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\end{document}
