@@ -7,8 +7,12 @@
 \newcommand{\blue}[1]{{\color{blue}#1}}
 \newcommand{\red}[1]{{\color{red}#1}}
 
+
+\usepackage{amssymb}
+\newcommand{\A}{\mathbb{A}}
+
 \begin{document}
-\tableofcontents
+\tableofcontents\newpage
 \part{Geometria de Euclides segle IIIaC}
 \begin{enumerate}
 \item 2 punts del pla
@@ -26,5 +30,67 @@
 % ultra elemental, és trist fer-ho
 \begin{itemize}
 \item Espai vectorial
+	\begin{itemize}
+	\item \blue{sobre el} cos $K$ \red{escalars}
+	\item \blue{és un} conjunt $E$ \red{vectors}
+	\item Operacions internes $(+, \times)$
+		\begin{itemize}
+		\item[$+$:] $$	\begin{array}{rcl}
+				E\times E		& \to		& E			\\
+				(\vec{u}, \vec{v})	& \mapsto	& \vec{u} + \vec{v}
+				\end{array}$$
+		\item[$\times$:] $$	\begin{array}{rcl}
+				K\times E		& \to		& E			\\
+				(\lambda, \vec{u})	& \mapsto	& \lambda \vec{u}
+				\end{array}$$
+		\end{itemize}
+	\end{itemize}
+\item Espai afí
+	\begin{itemize}
+	\item $\A \times E$ \red{vectors fixos}
+	\item \blue{Associat} Espai vectorial $E$ \red{vectors lliures}
+	\item \blue{Al} cos $K$
+	\item \blue{És un} conjunt $\A$ \red{punts}
+	\item Operació interna $(+)$
+		\begin{itemize}
+		\item[$\phi:$] $$\begin{array}{rcl}
+				\A \times E	& \to		& \A	\\
+				(p, \vec{u})	& \mapsto	& p + \vec{u}
+				\end{array}$$
+		\end{itemize}
+	\item Axiomes
+		\begin{enumerate}
+		\item $$\begin{array}{rcl}E&\to&\A\\\vec{u}&\mapsto&p+\vec{u}\end{array}$$ \blue{és} bijectiva
+		\item $\forall p \in \A \quad \vec{u}, \vec{v} \in E$
+			\subitem $(p + \vec{u}) + \vec{v} = p + (\vec{u} + \vec{v})$
+			\subitem $\phi (\phi (p, \vec{u}), \vec{v}) = \phi (p, \vec{u} + \vec{v})$
+		\item $\dim{\A} = \dim{E}$
+			\subitem $\phi: \begin{array}{rcl}\A \times E&\to&\A\\(p,\vec{u})&\mapsto&p+\vec{u}\end{array}$
+			\subitem \blue{la suma de} $E \forall$ espai vectorial \blue{és} afí
+		\item $(\A, E, \phi)$ \blue{és un} espai afí
+			\subitem $\dim{\A} = \dim{E}$
+		\end{enumerate}
+	\end{itemize}
+	\item Proposició
+		\begin{itemize}
+		\item Els axiomes 1 i 2 són equivalents
+		\item $\forall p, q \in \A\quad \exists: \vec{u} \in E:\quad p + \vec{u} = q = p + \overrightarrow{pq}$
+		\end{itemize}
+	\item Demostració
+		\begin{itemize}
+		\item 1, bijectiva
+		\item 2
+			\begin{itemize}
+			\item $r = p + \overrightarrow{pr}$
+			\item $q = p + \overrightarrow{pq}$
+				\subitem $\overrightarrow{pq} = \overrightarrow{pr} + \overrightarrow{rq}$
+			\end{itemize}
+		\end{itemize}
+	\item Corolari
+		\begin{enumerate}
+		\item $\overrightarrow{pp} = 0$
+		\item $p + \vec{0} = p$
+		\item $\overrightarrow{pq} = \vec{0} \Rightarrow p = q$
+		\end{enumerate}
 \end{itemize}
 \end{document}

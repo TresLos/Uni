@@ -1,6 +1,7 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[catalan]{babel}
+% El rar del professor de matemàtiques, el 3 amb alguna cosa estranya a sobre: li en diré ara per xi
 
 % Opino que la vida sense color no es vida
 \usepackage{color}
@@ -8,14 +9,17 @@
 \newcommand{\red}[1]{{\color{red}#1}}
 
 % Matemàtic
-\usepackage{dsfont} % |Z
-\newcommand{\Z}{\mathds{Z}}
+%\usepackage{dsfont} % |Z
+%\newcommand{\Z}{\mathds{Z}}
+\usepackage{amssymb}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
 
 \begin{document}
 Tot = Errar/ Lineal //parcial// Interpolar, derivar... / zeros// Fi\\
 Elden \& Wittmeyer-Koch
 1 Intro, 2 Error, 4 Zeros, 5 6 7 Interp Deriv Integracio, 8 Al lineal
-\tableofcontents
+\tableofcontents\newpage
 
 % Part més important, bàsic
 \part{\red{D}efinicions}
@@ -67,6 +71,66 @@ Elden \& Wittmeyer-Koch
 					\subsubitem $v = (-1)^s \cdot 0$
 			\end{itemize}
 		\end{itemize}
+	\end{itemize}
+\item Notació
+	\begin{itemize}
+	\item Exacte
+		\subitem $Y = G(x)$
+	\item Aproximació
+		\subitem $\widetilde{Y} = \widetilde{G} (\tilde{x})$
+	\item Resultat
+	\item $\widetilde{G}(\tilde{x}) - G(\tilde{x})$ \blue{Error arrodoniment}
+	\item $G(\tilde{x}) - G(x)$ \blue{propagació d'error}
+		\subitem $\widetilde{Y} - Y = \widetilde{G} (\tilde{x}) - G(x) = [\widetilde{G}(\tilde{x}) - G(\tilde{x})] + [G(\tilde{x}) - G(x)]$
+	\end{itemize}
+\item Notació \blue{poc rigorosa}
+	\begin{itemize}
+	\item $y = x \pm \varepsilon \Leftrightarrow |y - x| \le \varepsilon$
+	\item $a \ll b$
+	\item $a \lesssim b$
+	\item $a \approx b$
+	\end{itemize}
+\end{itemize}
+
+\part{\red{E}rror}
+\begin{itemize}
+\item exacte $\equiv$ desconegut
+\item $x \in \R$
+\item $\tilde{x} \in \R\quad \tilde{x} \approx x$
+\item Error absolut
+	\subitem $\tilde{x} - x$
+\item Error relatiu
+	\subitem $\frac{\tilde{x} - x}{x} \approx \frac{\tilde{x} - x}{\tilde{x}}$
+\item \red{Fita de l'error}
+% Voldria preguntar com arrodonim 1/2 en base 3
+\item Tallar
+	\subitem \blue{error absolut} $\le 10^{-t}$
+\item Arrodonir
+	\subitem \blue{error absolut} $\le \frac{1}{2} 10^{-t}$
+\item Decimals correctes \blue{Valors correctes després de la coma}
+\item Dígits significatius \blue{Nombre de valors diferents a nul, del primer a l'últim}
+\end{itemize}
+
+\section{Propagació de l'error}
+\begin{itemize}
+\item 1 variable
+	\begin{itemize}
+	\item $f: I \subset \R \to \R$ \blue{derivable}
+	\item $x, \tilde{x} \in I,\quad x \neq \tilde{x}$
+	\item $\exists \xi \in I \langle x, \tilde{x}\rangle: f(\tilde{x}) - f(x) = f'(\xi)(\tilde{x} - x)$
+		\subitem $f(\tilde{x}) - f(x)$ \blue{Error absolut en el resultat}
+		\subitem $f'(\xi)(\tilde{x} - x)$ \blue{Error en les dades}
+	\item $$\forall x, \tilde{x} \in I\quad |f(\tilde{x}) - f(x)| \le \max_{z \in I}|f'(z)||\tilde{x} - x|$$
+	\item $\bigtriangleup f \approx |f'(\tilde{x})| \bigtriangleup x$
+	\end{itemize}
+\item Varies variables
+	\begin{itemize}
+	\item $f: I_1 \times \cdots \times I_n \subset \R^n \to \R$ derivable
+	\item $x = (x_1, \cdots, x_n) \mapsto y = f (x_1, \cdots, x_n)$
+	\item $\tilde{x} = x + \bigtriangleup x$
+	\item $\bigtriangleup x = (\bigtriangleup x_1, \cdots, \bigtriangleup x_n)$
+	\item $\exists \sigma \in (0, 1):$
+		\subitem $f(x + \bigtriangleup x) - f(x) = f(\tilde{x}) - f(x) = \sum_{k=1}^n \frac{\delta f}{\delta x_k}(x + \sigma\cdot \bigtriangleup x) \bigtriangleup x_k$
 	\end{itemize}
 \end{itemize}
 \end{document}
