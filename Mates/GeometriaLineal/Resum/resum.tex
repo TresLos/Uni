@@ -8,7 +8,7 @@
 \newcommand{\red}[1]{{\color{red}#1}}
 
 
-\usepackage{amssymb}
+\usepackage{amssymb, amsmath}
 \newcommand{\A}{\mathbb{A}}
 
 \begin{document}
@@ -86,11 +86,26 @@
 				\subitem $\overrightarrow{pq} = \overrightarrow{pr} + \overrightarrow{rq}$
 			\end{itemize}
 		\end{itemize}
-	\item Corolari
+	\item Coro\lgem ari % ta ben escrit
 		\begin{enumerate}
 		\item $\overrightarrow{pp} = 0$
 		\item $p + \vec{0} = p$
 		\item $\overrightarrow{pq} = \vec{0} \Rightarrow p = q$
 		\end{enumerate}
 \end{itemize}
+
+\part{Ara em fa pal ordenar. Espero que ja ho faré}
+\section{2 - Combinacions ``lineals'' de punts}
+\subsection*{Proposició}
+$$\sum \lambda_i p_i\quad \text{si } \sum \lambda_i = 1$$
+\subsection*{Demostració}
+$$\forall 0, 0' \in \A \quad 0 + \left(\sum \lambda_i\right)\overrightarrow{00'} = 0'$$
+
+\section{3 - Baricentre}
+$$B:= \sum^k_{i=1} \frac{1}{k} p_i$$
+\subsection*{Proposició}
+$B$ és l'únic punt de $\A$ que verifica:
+$$\sum \overrightarrow{Bp_i} = 0$$
+%\subsection*{Demostració}, hi ha una, però ara mateix la desconec
+
 \end{document}
