@@ -15,10 +15,10 @@ void printeja (double alpha, double c, double x)
 int main (void)
 {
 	double alpha = 1, c = 2, x = 10;
-	printf ("\nMostra per -2:\n\n");
+	printf ("\nMostra per 2:\n\n");
 	printeja (alpha, c, x);
 	c = -2;
-	printf ("\nMostra per 2:\n\n");
+	printf ("\nMostra per -2:\n\n");
 	printeja (alpha, c, x);
 
 	return 0;

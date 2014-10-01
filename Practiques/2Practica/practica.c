@@ -6,7 +6,7 @@
 int main (void)
 {
 // Valors que donem per a operar per comenzar
-	int i, n = 30;
+	int i, n = 50;
 	double x0 = 1, x1 = 1/3.;
 
 	double xDirecte, xDoubleRecursiu = x1, xDoubleRecursiu1 = x0, xDoubleTmp;
@@ -19,7 +19,7 @@ int main (void)
 
 	for (i = 0; i < n; i++)
 	{
-		xDirecte = DoubleDirecte (n, x0, x1);
+		xDirecte = DoubleDirecte (i, x0, x1);
 
 		xDoubleTmp		= DoubleRecursiu (xDoubleRecursiu, xDoubleRecursiu1);
 		xDoubleRecursiu1	= xDoubleRecursiu;
