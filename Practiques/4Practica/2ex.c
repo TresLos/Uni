@@ -7,6 +7,7 @@
 
 int main (void)
 {
+// clock_t --> t = \Apha t / CLOCKS_PER_SEC
 	// Testeix del programa en si
 	int n;
 	double tol = 1e-4;
@@ -17,11 +18,13 @@ int main (void)
 	SM (U, n, n);
 	printf ("\nEntri la vector:\n");
 	double *b = GVM (n);
+	SV (b, n);
 	printf ("\nEl que has entrat mostrat:");
 	switch (trisup (n, U, b, tol))
 	{
 	case 0:
-		SV (b, 2);
+		printf ("Solucio desitjada\n");
+		SV (b, n);
 		break;
 	case 1:
 		printf ("diagonal < %le", tol);
@@ -30,5 +33,9 @@ int main (void)
 		printf ("No es una matriu triangular superior");
 		break;
 	}
+
+	free (b);
+	for (n = n; n >= 0; n--)
+		free (U[n]);
 	return 0;
 }

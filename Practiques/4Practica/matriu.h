@@ -17,6 +17,12 @@
 double **GMM (int m, int n)
 {
 	double **a = (double **) malloc (m * sizeof (double *));
+	if (a == NULL)
+	{
+		printf ("Error en GMM, no hi ha espai");
+		exit (1);
+	}
+
 	int i, j;
 	for (i = 0; i < m; i++)
 	{
@@ -131,10 +137,14 @@ int trisup (int n, double **U, double *b, double tol)
 {
 	int i, j;
 
-	for (i = n; i < n; i--)
+	for (i = n -1; i >= 0; i--)
 	{
-		for (j = n; j < i; j--)
+		printf ("Comensa la magia\n\n");
+		for (j = n -1; j > i; j--)
+		{
 			b[i] -= U[i][j] * b[j];
+			printf ("i = %d\tj= %d\n", i, j);
+		}
 		b[i] /= U[i][i];
 	}
 
