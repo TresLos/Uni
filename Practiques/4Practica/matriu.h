@@ -27,6 +27,19 @@ double **GMM (int m, int n)
 	return a;
 }
 /**
+  * Genera el Vector de forma Manual
+  *
+  *
+  */
+double *GVM (n)
+{
+	double *a = (double *) malloc (n * sizeof (double *));
+	int i;
+	for (i = 0; i < n; i++)
+		scanf ("%le", &a[i]);
+	return a;
+}
+/**
   * Genera una matriu aleatoria
   *
   * max, el valor maxim de la matriu
