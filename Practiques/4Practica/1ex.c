@@ -27,7 +27,7 @@ int main (void)
 	clock_t t, te, tp;
 /* use current time as seed for random generator */
 	int m, n;
-	double **A, *x;//, *b;
+	double **A, *x, *b;
 	double tt, td;
 
 // Begin programa
@@ -36,21 +36,23 @@ int main (void)
 
 // Genera una matriu aleatoria, (maxim, minim, matriu desitjada, m, n)
 	time (&tp);
-	GMA (1, -1, &A, m, n);
-	GVA (1, -1, &x, n);
+//	A = GMM (1, -1, A, m, n);
+//	x = GVM (1, -1, x, n);
+	A = GMM (m, n);
+	x = GVM (n);
 
 // Operacio demanada
 	time (&t);
 	PMV (A, x, m, n);
-	//b = PMV (A, x, m, n);
+	b = PMV (A, x, m, n);
 	time (&te);
 
 	printf ("\nJa ha acabat el generador\n");
 
 // Mostra la matriu
-/*	SM (A, m, n);
+	SM (A, m, n);
 	SV (x, n);
-	SV (b, m);*/
+	SV (b, m);
 
 //	printf ("temps:%ju", t);
 	td = difftime (t, tp);

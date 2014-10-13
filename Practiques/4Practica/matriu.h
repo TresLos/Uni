@@ -1,120 +1,19 @@
-/**
-  * reclama de:
-  * #include <stdlib.h>
-  * #include <stdio.h>
-  *
-  */
+/* es tan majo que ja ho fa tot ell mateix :) */
+#include <stdlib.h>
+#include <stdio.h>
 
-/***********************************************************************************************************************/
-/*********************************************GENERATOR*****************************************************************/
-/***********************************************************************************************************************/
-/**
-  * Genera la Matriu de forma Manual
-  *
-  * m, files
-  * n, columnes
-  */
-double **GMM (int m, int n)
-{
-	double **a = (double **) malloc (m * sizeof (double *));
-	if (a == NULL)
-	{
-		printf ("Error en GMM, no hi ha espai");
-		exit (1);
-	}
+/* Les llibreries que he anat fent al llarg del temps */
+#include "matriu/generator.h"
+#include "matriu/producter.h"
 
-	int i, j;
-	for (i = 0; i < m; i++)
-	{
-		a[i] = (double *) malloc (n * sizeof (double *));
-		for (j = 0; j < n; j++)
-			scanf ("%le" , &a[i][j]);
-	}
-	return a;
-}
-/**
-  * Genera el Vector de forma Manual
-  *
-  *
-  */
-double *GVM (n)
-{
-	double *a = (double *) malloc (n * sizeof (double *));
-	int i;
-	for (i = 0; i < n; i++)
-		scanf ("%le", &a[i]);
-	return a;
-}
-/**
-  * Genera una matriu aleatoria
-  *
-  * max, el valor maxim de la matriu
-  * min, " minim
-  * e, la matriu que generarem "teoricament aqui sense inicialitzar
-  * m, files
-  * n, columnes
-  *
-  * rand => |max - min| rand ()/ RAND_MAX + min
-  */
-void GMA (double max, double min, double ***e, int m, int n)
-{
-	double **a = (double **) malloc (m * sizeof (double *)); // no faltaria un *?
-	int i, j;
-	max *= 10; // no entenc el perque els necessito.
-	min *= 10; // sense ells no obtinc el resultat desitjat
-	for (i = 0; i < m; i++)
-	{
-		a[i] = (double *) malloc (n * sizeof (double *));
-		for (j = 0; j < n; j++)
-			a[i][j] = (fabs (max - min) * rand ()) / (double) RAND_MAX + min;
-	}
-	*e = a;
-}
-/**
-  * Genera un vector aleatori
-  * max, valor maxim
-  * min, valor minim
-  * e, vector que generem, "teoricament sense inicialitzar"
-  * n, files (nx1)
-  */
-void GVA (double max, double min, double **e, int n)
-{
-	int i;
-	max *= 10;
-	min *= 10;
-	double *a = (double *) malloc (n * sizeof (double *));
-	for (i = 0; i < n; i++)
-		a[i] = (fabs (max - min) * rand ()) / (double) RAND_MAX + min;
-	*e = a;
-}
-/***********************************************************************************************************************/
-/*********************************************GENERATOR**********END****************************************************/
-/***********************************************************************************************************************/
+/*
+   GMM	Genera Matriu manual
+   GMA	Genera Matriu aleatoria
+   GVM	Genera Vector manual
+   GVA	Genera Vector aleatoria
 
-/***********************************************************************************************************************/
-/**********************************************PRODUCTER****************************************************************/
-/***********************************************************************************************************************/
-/**
-  * Producte de matriu amb vector Ax = b
-  * A, matriu m, n
-  * x, vector n, 1
-  * m, n, dimencions
-  * b, vector sortida m, 1
-  * @return resultat del producte
-  */
-double *PMV (double **A, double *x, int m, int n)
-{
-	double *b = (double *) calloc (n, sizeof (double *));
-	int i, j;
-	for (i = 0; i < m; i++)
-		for (j = 0; j < n; j++)
-			b[i] += A[i][j] * x[j];
-	return b;
-}
-/***********************************************************************************************************************/
-/***************************END****************PRODUCTER****************************************************************/
-/***********************************************************************************************************************/
-
+   PMV	Producte entre matriu  vector
+*/
 /***********************************************************************************************************************/
 /***********************************************SLOVE*******************************************************************/
 /***********************************************************************************************************************/
@@ -139,12 +38,8 @@ int trisup (int n, double **U, double *b, double tol)
 
 	for (i = n -1; i >= 0; i--)
 	{
-		printf ("Comensa la magia\n\n");
 		for (j = n -1; j > i; j--)
-		{
 			b[i] -= U[i][j] * b[j];
-			printf ("i = %d\tj= %d\n", i, j);
-		}
 		b[i] /= U[i][i];
 	}
 
@@ -170,7 +65,7 @@ void SM (double **A, int m, int n)
 	for (i = 0; i < m; i++)
 	{
 		for (j = 0; j < n; j++)
-			printf ("%20.3le", A[i][j]);
+			printf ("%20.3lf", A[i][j]);
 		printf ("\n");
 	}
 }
@@ -183,7 +78,7 @@ void SV (double *v, int n)
 	int i;
 	printf ("\nShow vector\n");
 	for (i = 0; i < n; i++)
-		printf ("%20.3le", v[i]);
+		printf ("%20.3lf", v[i]);
 	printf ("\n");
 }
 /***********************************************************************************************************************/
