@@ -15,11 +15,13 @@ int main (void)
 	scanf ("%d", &n);
 	printf ("\nEntri la matriu:\n");
 	double **U = GMM (n, n);
-	SM (U, n, n);
 	printf ("\nEntri la vector:\n");
 	double *b = GVM (n);
+	SM (U, n, n);
 	SV (b, n);
 	printf ("\nEl que has entrat mostrat:");
+
+
 	switch (trisup (n, U, b, tol))
 	{
 	case 0:
