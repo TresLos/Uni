@@ -5,6 +5,7 @@
    GMH	Genera Matriu Hilbert
    GVM	Genera Vector manual
    GVA	Genera Vector aleatoria
+   GVH	Genera Vector Hilbert
 */
 
 
@@ -19,17 +20,25 @@
   */
 double **GMM (int m, int n)
 {
-	double **a = (double **) malloc (m * sizeof (double *));
+	int i, j;
+	double **a;
+
+	a = (double **) malloc (m * sizeof (double *));
 	if (a == NULL)
 	{
 		printf ("Error en GMM, no hi ha espai");
 		exit (1);
 	}
 
-	int i, j;
 	for (i = 0; i < m; i++)
 	{
 		a[i] = (double *) malloc (n * sizeof (double *));
+		if (a[i] == NULL)
+		{
+			printf ("Error en GMM, no hi ha espai 2");
+			exit (1);
+		}
+
 		for (j = 0; j < n; j++)
 			scanf ("%le" , &a[i][j]);
 	}
@@ -61,21 +70,21 @@ double *GVM (n)
   * m, files
   * n, columnes
   *
-  * rand => |max - min| rand ()/ RAND_MAX + min
+  * rand => (max - min) rand ()/ RAND_MAX + min
   * aparentment funciona correctament
   * fa magia, desconec el motiu de multiplicar per 10
   */
 void GMA (double max, double min, double ***e, int m, int n)
 {
-	double **a = (double **) malloc (m * sizeof (double *)); // no faltaria un *?
+	double **a = (double **) malloc (m * sizeof (double *)); /* no faltaria un * */
 	int i, j;
-	max *= 10; // no entenc el perque els necessito.
-	min *= 10; // sense ells no obtinc el resultat desitjat
+	max *= 10; /* no entenc el perque els necessito. */
+	min *= 10; /* sense ells no obtinc el resultat desitjat */
 	for (i = 0; i < m; i++)
 	{
 		a[i] = (double *) malloc (n * sizeof (double *));
 		for (j = 0; j < n; j++)
-			a[i][j] = (fabs (max - min) * rand ()) / (double) RAND_MAX + min;
+			a[i][j] = ((max - min) * rand ()) / (double) RAND_MAX + min;
 	}
 	*e = a;
 }
@@ -108,7 +117,7 @@ void GVA (double max, double min, double **e, int n)
   */
 double **GMH (int n) /* Correcte lo de malloc dit per la Julia Rosa */
 {
-	double **a = (double **) malloc (m * sizeof (double *));
+	double **a = (double **) malloc (n * sizeof (double *));
 	if (a == NULL)
 	{
 		printf ("Error en GMH, no hi ha espai 1");
@@ -116,7 +125,7 @@ double **GMH (int n) /* Correcte lo de malloc dit per la Julia Rosa */
 	}
 
 	int i, j;
-	for (i = 0; i < m; i++)
+	for (i = 0; i < n; i++)
 	{
 		a[i] = (double *) malloc (n * sizeof (double));
 		if (a == NULL)
@@ -140,7 +149,7 @@ double **GMH (int n) /* Correcte lo de malloc dit per la Julia Rosa */
   */
 double *GVH (double **a, int n)
 {
-	double *b = (double *) calloc (n * sizeof (double));
+	double *b = (double *) calloc (n, sizeof (double));
 	if (b == NULL)
 	{
 		printf ("Errro en GVH, no hi ha espai.");

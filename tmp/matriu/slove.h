@@ -54,5 +54,5 @@ int gauss (int n, double **A, double *b, double tol)
 		}
 	}
 	/* Gauss esta acabat */
-	return trisup (n, A, b, tol);
+	return 0;
 }
