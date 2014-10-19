@@ -7,8 +7,8 @@
 
 int main (void)
 {
-// clock_t --> t = \Apha t / CLOCKS_PER_SEC
-	// Testeix del programa en si
+/* clock_t --> t = \Apha t / CLOCKS_PER_SEC */
+	/* Testeix del programa en si */
 	int n;
 	double tol = 1e-4;
 	printf ("Entri dim de la matriu:\n");
@@ -37,7 +37,7 @@ int main (void)
 	}
 
 	free (b);
-	for (n = n; n >= 0; n--)
+	for (n = n -1; n >= 0; n--)
 		free (U[n]);
 	return 0;
 }
