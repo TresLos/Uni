@@ -9,10 +9,10 @@
    GVA	Genera Vector aleatoria
    GV1	Genera Vector solucio 1
 
-   PreTrisup	Dona tots els errors possibles abans d'efectuar la triangular superior
-
    FM	Allibera espai de memoria
    FV	El mateix pero per vectors
+
+   CV	Copia el vector
 
    SM	Mostra la matriu
    SV	Mostra el vector
@@ -125,7 +125,7 @@ double **GMH (int n)
 	{
 		a[i] = (double *) malloc (n * sizeof (double *));
 		for (j = 0; j < n; j++)
-			a[i][j] = 1/(i + j + 1);
+			a[i][j] = 1./(i + j + 1);
 	}
 	return a;
 }
@@ -140,38 +140,11 @@ double *GV1 (int n, double **A)
 {
 	int i, j;
 	double *b;
-	b = (double *) calloc (n * sizeof (double *));
+	b = (double *) calloc (n, sizeof (double *));
 	for (i = 0; i < n; i++)
 		for (j = 0; j < n; j++)
-			b[i] += A[i][k];
+			b[i] += A[i][j];
 	return b;
-}
-
-/**
-  * Possibles errors abans d'executar la trianguar superior
-  *
-  * n, es la dimencio de la matriu
-  * a, es la matriu
-  * t, es la tolerancia
-  *
-  * Return
-  * 0, tot correcte
-  * 1, no es triangular superior
-  * -1, no es pot aplicar el trisup, ja que te la diagonal nula.
-  */
-int PreTrisup (int n, double **a, double tol) /* No ha sigut testejat */
-{
-	int i, j;
-
-	for (i = 0; i < n; i++)
-	{
-		if (a[i][i] < tol)
-			return -1;/* Diagonal */
-		for (j = i; j >= 1; j--)
-			if (a[i][j] < tol)
-				return 1;/* Triangular superior */
-	}
-	return 0;
 }
 
 /**
@@ -191,10 +164,28 @@ void FM (double **a, int m) /* Les columnes no interessent aparentment */
 
 /**
   * Free vector
+  *
+  * No cal coneixer la seva dimencio
   */
-void FV (double *v, int n)
+void FV (double *v)
 {
 	free (v);
+}
+
+/**
+  * Copia el vector
+  *
+  * n, dimencio
+  * v, el vector a copiar
+  */
+double * CV (int n, double *v)
+{
+	int i;
+	double *a = (double *) malloc (n * sizeof (double *));
+
+	for (i = n -1; i > -1; i--)
+		a[i] = v[i];
+	return a;
 }
 
 /**

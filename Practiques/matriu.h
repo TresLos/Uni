@@ -5,7 +5,7 @@
 
 /* Les llibreries que he anat fent al llarg del temps */
 #include "matriu/basic.h"
-#include "matriu/producter.h"
+#include "matriu/binaryOperation.h"
 #include "matriu/slove.h"
 
 /*
@@ -25,6 +25,7 @@
    SV	Mostra el vector
 
    PMV	Producte entre matriu  vector
+   RVV	Resta entre vector vector
 
    trisup	Soluciona una triangular superior // No fa cap comprovacio, mes que la diagonal. ISTS, per a saber si es Triangular superior
    gauss	Soluciona una matriu amb gauss, per fer // A = LU // det, Trisup, ...

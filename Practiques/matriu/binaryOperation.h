@@ -2,6 +2,7 @@
 
 /*
    PMV	Producte entre matriu  vector
+   RVV	Resta entre vector vector
 */
 
 
@@ -23,4 +24,23 @@ double *PMV (double **A, double *x, int m, int n)
 		for (j = 0; j < n; j++)
 			b[i] += A[i][j] * x[j];
 	return b;
+}
+
+/**
+  * Resta entre vectors
+  *
+  * a - b
+  *
+  * n, dimencio
+  * a, primer element
+  * b, segon element
+  *
+  * solucio = a
+  */
+void RVV (int n, double *a, double *b)
+{
+	int i;
+
+	for (i = 0; i < n; i++)
+		a[i] -= b[i];
 }
