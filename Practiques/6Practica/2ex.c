@@ -1,17 +1,19 @@
 #include "../matriu.h"
+/* Ni compilat, no se k fara muhaahahah */
 
 /* Actualment no he fet res, nomes un copy past */
 int main (void)
 {
-	int n;
-	double tol = 1e-4;
-	double **A, *b, *p;
+	int n, *p;
+	double tol = 1e-10;
+	double **A, *b, *x;
 	printf ("Entri dim de la matriu:\n");
 	scanf ("%d", &n);
 	printf ("\nEntri la matriu:\n");
 	A = GMM (n, n);
 	printf ("\nEntri la vector:\n");
 	b = GVM (n);
+	x = (n, b);
 	SM (A, n, n);
 	SV (b, n);
 	printf ("\nEl que has entrat mostrat:");
@@ -25,17 +27,18 @@ int main (void)
 	case 0:
 		printf ("Primera resolucio:\n");
 		SM (A, n, n);
-		SV (p, n);
-		switch (resol (n, A, tol))
+		SVI (p, n);
+		switch (resol (n, A, b, x, p, tol))
 		{
-		case 1:
-			printf ("Te elements nuls a la diagonal, no se pot fer la triangular superior.\n");
-			break;
 		case -1:
-			printf ("No es triangular, pero no importa, ja que no ho volem amb gauss.\n");
+			printf ("Es impossible, la diagonal es nula\n");
+			break;
 		case 0:
+			printf ("Solucio final ?.\n\n");
+			SM (A, n, n);
+			SV (x, n);
 			trisup (n, A, b, tol);
-			printf ("Solucio final.\n");
+			printf ("Solucio final.\nDesitjada?\n");
 			SV (b, n);
 		}
 	}

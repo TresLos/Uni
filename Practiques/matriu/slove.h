@@ -139,15 +139,13 @@ int gauss (int n, double **A, double *b, double tol)
   * 0, tot correcte
   * 1, a la diagonal hi ha un element nul
   */
-int palu (int n, double **A, int *p, double tol)
+int palu (int n, double **A, int **pi, double tol)
 {
-	int k, i, j;
+	int k, i, j, *p;
 	double m;
 	double *tv; /* per buscar els maxims */
 
-	double *p = (double *) malloc (n * sizeof (double *));
-	for (i = 0; i < n; i++)
-		p[i] = i;
+	p = GVN (n);
 
 	for (k = 0; k < n -1; k++)
 	{
@@ -182,6 +180,7 @@ int palu (int n, double **A, int *p, double tol)
 				A[i][j] -= m * A[k][j];
 		}
 	}
+	*pi = p;
 	return 0;
 }
 /**
@@ -193,12 +192,16 @@ int palu (int n, double **A, int *p, double tol)
   * p, permutacions
   *
   * x, sortida desitjada
+  * 0, tot correcte
+  * -1, IMPOSSIBLE continuar
   */
-int resol (int n, double **A, double *b, double *x, int *p, double tol)
+int resol (int n, double **A, double *b, double *x, int **pi, double tol)
 {
 	int i;
 	double v; /* per fer permutacions a la b */
+	int *p;
 
+	p = GVN (n);
 /* Reordenem la b, per tal que sigui la mateixa que LU */
 	for (i = 0; i < n; i++)
 	{
@@ -221,6 +224,7 @@ int resol (int n, double **A, double *b, double *x, int *p, double tol)
 
 	trisup (n, A, x, tol);
 
+	*pi = p;
 	return 0;
 }
 /**

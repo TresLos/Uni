@@ -1,10 +1,19 @@
 #include "../matriu.h"
 
+/* Testejat per:
+3
+7 2 5
+8 4 3
+1 12 6
+Funciona millor del esperat "m'ha superat a mi"
+Tot correcte aparentment
+*/
+
 int main (void)
 {
-	int n;
+	int n, *p;
 	double tol = 1e-4;
-	double **A, *b, *p;
+	double **A;
 	printf ("Entri dim de la matriu:\n");
 	scanf ("%d", &n);
 	printf ("\nEntri la matriu:\n");
@@ -13,7 +22,7 @@ int main (void)
 	printf ("\nEl que has entrat mostrat:");
 /* Copy past d'entrada manual */
 
-	switch (palu (n, A, p, tol))
+	switch (palu (n, A, &p, tol))
 	{
 	case -1:
 		printf ("La matriu no se pot fer gauss.\nAlmenys amb PALU, segurament no es determinada amb una unica solucio.\n");
@@ -21,11 +30,11 @@ int main (void)
 	case 0:
 		printf ("Primera resolucio:\n");
 		SM (A, n, n);
-		SV (p, n);
+		SVI (p, n);
 	}
 
 /* Alliberant memoria */
-	FV (b, n);
+	FVI (p);
 	FM (A, n);
 	return 0;
 }

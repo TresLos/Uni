@@ -8,6 +8,7 @@
    GVM	Genera Vector manual
    GVA	Genera Vector aleatoria
    GV1	Genera Vector solucio 1
+   GVN	Genera Vector en cadena numerica
 
    FM	Allibera espai de memoria
    FV	El mateix pero per vectors
@@ -16,6 +17,7 @@
 
    SM	Mostra la matriu
    SV	Mostra el vector
+   SVI	Mostra el vector en enters
 */
 
 
@@ -148,6 +150,21 @@ double *GV1 (int n, double **A)
 }
 
 /**
+  * Genera el vecor d'enters "simple" 1, 2, 3, ..., n
+  *
+  * n, dimencio
+  */
+int *GVN (int n)
+{
+	int i;
+	int *p;
+	p = (int *) malloc (n * sizeof (int *));
+	for (i = 0; i < n; i++)
+		p[i] = i;
+	return p;
+}
+
+/**
   * Free matrix
   *
   * a, matrix
@@ -168,6 +185,15 @@ void FM (double **a, int m) /* Les columnes no interessent aparentment */
   * No cal coneixer la seva dimencio
   */
 void FV (double *v)
+{
+	free (v);
+}
+/**
+  * Free vector d'enters
+  *
+  * No cal coneixer la seva dimencio
+  */
+void FVI (int *v)
 {
 	free (v);
 }
@@ -201,7 +227,7 @@ void SM (double **A, int m, int n)
 	for (i = 0; i < m; i++)
 	{
 		for (j = 0; j < n; j++)
-			printf ("%20.3lf", A[i][j]);
+			printf ("%20.15lf", A[i][j]);
 		printf ("\n");
 	}
 }
@@ -215,5 +241,17 @@ void SV (double *v, int n)
 	printf ("\nShow vector\n");
 	for (i = 0; i < n; i++)
 		printf ("%20.3lf", v[i]);
+	printf ("\n");
+}
+/**
+  *
+  *
+  */
+void SVI (int *v, int n)
+{
+	int i;
+	printf ("\nShow vector\n");
+	for (i = 0; i < n; i++)
+		printf ("%7d", v[i]);
 	printf ("\n");
 }
