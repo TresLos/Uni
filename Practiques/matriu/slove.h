@@ -207,6 +207,8 @@ int resol (int n, double **A, double *b, double *x, int *p, double tol)
 		b[p[i]] = v;
 	}
 
+/* Tinc dubtes de que el for anterior estigui gaire correcte */
+
 	x = CV (n, b);
 
 	triinf (n, A, x);
