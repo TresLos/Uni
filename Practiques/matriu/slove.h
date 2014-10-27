@@ -227,6 +227,26 @@ int resol (int n, double **A, double *b, double *x, int **pi, double tol)
 	*pi = p;
 	return 0;
 }
+/* Plantejament 2 de resol, no he testejat l'anterior, aixi de liante soc jo xD */
+int resolGauss (int n, double **A, double *b, double *x, int *p, double tol)
+{
+	int i, k;
+	double pv, *tp; /* nomes son per a fer permutacions */
+
+/* Calculem el valor real de b */
+	/* Primer permutem b */
+	tp = (double *) malloc (n * sizeof (double *));
+	for (i = 0; i < n; i++)
+		tp[i] = b[p[i]];
+	free (b);
+	b = tp;
+	/* Ara ja podem sumar valors a b */
+	for (k = 0; k < n -1; k++)
+		for (i = k +1; k < n; i++)
+			b[i] -= A[i][k] * b[k];
+/* Aqui representa que ja puc fer la trisuperior normal */
+	return trisup (n, A, b, tol);
+}
 /**
   * Norma
   *
