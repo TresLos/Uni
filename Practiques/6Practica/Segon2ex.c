@@ -30,7 +30,7 @@ int main (void)
 		printf ("Primera resolucio:\n");
 		SM (A, n, n);
 		SVI (p, n);
-		switch (resolGauss (n, A, b, x, p, tol))
+		switch (resolGauss (n, A, &b, x, p, tol))
 		{
 		case -1:
 			printf ("Es impossible, la diagonal es nula\n");
@@ -38,15 +38,17 @@ int main (void)
 		case 0:
 			printf ("Solucio final ?.\n\n");
 			SM (A, n, n);
-			SV (x, n);
-			trisup (n, A, b, tol);
-			printf ("Solucio final.\nDesitjada?\n");
 			SV (b, n);
+/*			trisup (n, A, b, tol);			Sembla ser que aixo sobra un pelet
+			printf ("Solucio final.\nDesitjada?\n");
+			SV (b, n);*/
 		}
 	}
 
 /* Alliberant memoria */
-	FV (b, n);
+	free (p);
+	free (b);
+	free (x);
 	FM (A, n, n);
 	return 0;
 }

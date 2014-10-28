@@ -19,7 +19,7 @@ int main (void)
 	printf ("aqui una possible solucio:\n");
 	SV (x, n);
 
-	FM (A, n);
+	FM (A, n, n);
 	FV (b, n);
 	FV (x, n);
 	return 0;

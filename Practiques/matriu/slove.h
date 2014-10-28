@@ -111,9 +111,11 @@ int gauss (int n, double **A, double *b, double tol)
 
 	for (k = 0; k < n -1; k++)
 	{
-		if (A[k][k] < tol)
+		if (fabs (A[k][k]) < tol)
 		{
 			printf ("Peta pq ha quedat una matriu que no sabem fer gauss sense pivotatge.\n");
+/*			SM (A, n, n); Corregint error, resultava ser que no feie el fabs... i petava quan no ho tenia que fer
+			printf ("\nvalor: %d\n", k);*/
 			return -1;
 		}
 		for (i = k +1; i < n; i++)
@@ -165,7 +167,7 @@ int palu (int n, double **A, int *p, double tol)
 		p[j] = i;
 /* Ja tenim el maxim, gauss normal */
 
-		if (A[k][k] < tol)
+		if (fabs (A[k][k]) < tol)
 		{
 			printf ("Peta pq ha quedat una matriu que no sabem fer gauss fins i tot amb pivotatge 'no existeix'.\n");
 			return -1;
@@ -225,10 +227,10 @@ int resol (int n, double **A, double *b, double *x, int **pi, double tol)
 	return 0;
 }
 /* Plantejament 2 de resol, no he testejat l'anterior, aixi de liante soc jo xD */
-int resolGauss (int n, double **A, double *b, double *x, int *p, double tol)
+int resolGauss (int n, double **A, double **bi, double *x, int *p, double tol)
 {
 	int i, k;
-	double *tp; /* nomes son per a fer permutacions */
+	double *tp, *b = *bi; /* nomes son per a fer permutacions */
 
 /* Calculem el valor real de b */
 	/* Primer permutem b */
@@ -239,9 +241,10 @@ int resolGauss (int n, double **A, double *b, double *x, int *p, double tol)
 	b = tp;
 	/* Ara ja podem sumar valors a b */
 	for (k = 0; k < n -1; k++)
-		for (i = k +1; k < n; i++)
+		for (i = k +1; i < n; i++)
 			b[i] -= A[i][k] * b[k];
 /* Aqui representa que ja puc fer la trisuperior normal */
+	*bi = b;
 	return trisup (n, A, b, tol);
 }
 /**

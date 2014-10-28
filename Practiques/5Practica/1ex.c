@@ -3,7 +3,7 @@
 int main (void)
 {
 	int n;
-	double tol = 1e-4;
+	double tol = 1e-8;
 	printf ("Entri dim de la matriu:\n");
 	scanf ("%d", &n);
 	printf ("\nEntri la matriu:\n");
@@ -40,6 +40,6 @@ int main (void)
 
 /* Alliberant memoria */
 	FV (b, n);
-	FM (A, n);
+	FM (A, n, n);
 	return 0;
 }

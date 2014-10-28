@@ -9,3 +9,6 @@ sourceTree, per al githb
 tambe tenim git status
 
 i animacions remolones xD gource
+
+
+Per fi fins la practica 6 tot furule com jo vull :)

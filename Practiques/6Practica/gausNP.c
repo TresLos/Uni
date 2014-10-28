@@ -40,6 +40,6 @@ int main (void)
 
 /* Alliberant memoria */
 	FV (b, n);
-	FM (A, n);
+	FM (A, n, n);
 	return 0;
 }

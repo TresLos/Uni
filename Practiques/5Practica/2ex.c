@@ -16,8 +16,8 @@ int main (void)
 
 		printf ("%3d:\t%.30le\n", n, Norm (n, b)-1);
 
-		FM (A, n);
-		FV (b);
+		FM (A, n, n);
+		FV (b, n);
 	}
 
 	return 0;
