@@ -143,6 +143,11 @@ double *GV1 (int n, double **A)
 	int i, j;
 	double *b;
 	b = (double *) calloc (n, sizeof (double *));
+	if (b == NULL)
+	{
+		printf ("Peta en reservar memoria en GV1\n");
+		exit (300);
+	}
 	for (i = 0; i < n; i++)
 		for (j = 0; j < n; j++)
 			b[i] += A[i][j];
@@ -170,7 +175,7 @@ int *GVN (int n)
   * a, matrix
   * m, files
   */
-void FM (double **a, int m) /* Les columnes no interessent aparentment */
+void FM (double **a, int m, int n) /* Les columnes no interessent aparentment */
 {
 	int i;
 
@@ -184,7 +189,7 @@ void FM (double **a, int m) /* Les columnes no interessent aparentment */
   *
   * No cal coneixer la seva dimencio
   */
-void FV (double *v)
+void FV (double *v, int n)
 {
 	free (v);
 }
@@ -244,7 +249,7 @@ void SV (double *v, int n)
 	printf ("\n");
 }
 /**
-  *
+  * Mostra el vector enter (I int)
   *
   */
 void SVI (int *v, int n)

@@ -139,13 +139,11 @@ int gauss (int n, double **A, double *b, double tol)
   * 0, tot correcte
   * 1, a la diagonal hi ha un element nul
   */
-int palu (int n, double **A, int **pi, double tol)
+int palu (int n, double **A, int *p, double tol)
 {
-	int k, i, j, *p;
+	int k, i, j;
 	double m;
 	double *tv; /* per buscar els maxims */
-
-	p = GVN (n);
 
 	for (k = 0; k < n -1; k++)
 	{
@@ -180,7 +178,6 @@ int palu (int n, double **A, int **pi, double tol)
 				A[i][j] -= m * A[k][j];
 		}
 	}
-	*pi = p;
 	return 0;
 }
 /**
@@ -231,7 +228,7 @@ int resol (int n, double **A, double *b, double *x, int **pi, double tol)
 int resolGauss (int n, double **A, double *b, double *x, int *p, double tol)
 {
 	int i, k;
-	double pv, *tp; /* nomes son per a fer permutacions */
+	double *tp; /* nomes son per a fer permutacions */
 
 /* Calculem el valor real de b */
 	/* Primer permutem b */
