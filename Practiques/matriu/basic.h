@@ -35,7 +35,7 @@ double **GMM (int m, int n)
 	double **a = (double **) malloc (m * sizeof (double *));
 	if (a == NULL)
 	{
-		printf ("Error en GMM, no hi ha espai");
+		printf ("\nError en GMM, no hi ha espai\n");
 		exit (1);
 	}
 
@@ -43,6 +43,11 @@ double **GMM (int m, int n)
 	for (i = 0; i < m; i++)
 	{
 		a[i] = (double *) malloc (n * sizeof (double *));
+		if (a[i] == NULL)
+		{
+			printf ("\nError en GMM, no hi ha espai\n");
+			exit (2);
+		}
 		for (j = 0; j < n; j++)
 			scanf ("%le" , &a[i][j]);
 	}
@@ -60,6 +65,11 @@ double **GMM (int m, int n)
 double *GVM (n)
 {
 	double *a = (double *) malloc (n * sizeof (double *));
+	if (a == NULL)
+	{
+		printf ("\nError en GVM, no hi ha espai en memoria\n");
+		exit (1);
+	}
 	int i;
 	for (i = 0; i < n; i++)
 		scanf ("%le", &a[i]);
@@ -81,12 +91,22 @@ double *GVM (n)
 void GMA (double max, double min, double ***e, int m, int n)
 {
 	double **a = (double **) malloc (m * sizeof (double *)); /* no faltaria un * */
+	if (a == NULL)
+	{
+		printf ("\nNo hi ha memoria per a GMA\n");
+		exit (1);
+	}
 	int i, j;
 	max *= 10; /* no entenc el perque els necessito. */
 	min *= 10; /* sense ells no obtinc el resultat desitjat */
 	for (i = 0; i < m; i++)
 	{
 		a[i] = (double *) malloc (n * sizeof (double *));
+		if (a[i] == NULL)
+		{
+			printf ("\nNo hi ha memoria per a GMA\n");
+			exit (2);
+		}
 		for (j = 0; j < n; j++)
 			a[i][j] = (fabs (max - min) * rand ()) / (double) RAND_MAX + min;
 	}
@@ -108,6 +128,11 @@ void GVA (double max, double min, double **e, int n)
 	max *= 10;
 	min *= 10;
 	double *a = (double *) malloc (n * sizeof (double *));
+	if (a == NULL)
+	{
+		printf ("\nNo hi ha memoria per a GVA\n");
+		exit (1);
+	}
 	for (i = 0; i < n; i++)
 		a[i] = (fabs (max - min) * rand ()) / (double) RAND_MAX + min;
 	*e = a;
@@ -123,9 +148,19 @@ double **GMH (int n)
 	double **a;
 
 	a = (double **) malloc (n * sizeof (double *));
+	if (a == NULL)
+	{
+		printf ("\nNo hi ha memoria per a GMH\n");
+		exit (1);
+	}
 	for (i = 0; i < n; i++)
 	{
 		a[i] = (double *) malloc (n * sizeof (double *));
+		if (a[i] == NULL)
+		{
+			printf ("\nNo hi ha memoria per a GMH\n");
+			exit (2);
+		}
 		for (j = 0; j < n; j++)
 			a[i][j] = 1./(i + j + 1);
 	}
@@ -143,6 +178,7 @@ double *GV1 (int n, double **A)
 	int i, j;
 	double *b;
 	b = (double *) calloc (n, sizeof (double *));
+
 	if (b == NULL)
 	{
 		printf ("Peta en reservar memoria en GV1\n");
@@ -155,7 +191,7 @@ double *GV1 (int n, double **A)
 }
 
 /**
-  * Genera el vecor d'enters "simple" 1, 2, 3, ..., n
+  * Genera el vecor de naturals "simple" 1, 2, 3, ..., n
   *
   * n, dimencio
   */
@@ -164,6 +200,11 @@ int *GVN (int n)
 	int i;
 	int *p;
 	p = (int *) malloc (n * sizeof (int *));
+	if (p == NULL)
+	{
+		printf ("\nNo hi ha memoria per a GVN\n");
+		exit (1);
+	}
 	for (i = 0; i < n; i++)
 		p[i] = i;
 	return p;
@@ -213,6 +254,11 @@ double * CV (int n, double *v)
 {
 	int i;
 	double *a = (double *) malloc (n * sizeof (double *));
+	if (a == NULL)
+	{
+		printf ("\nNo memory Exist in CV\n");
+		exit (1);
+	}
 
 	for (i = n -1; i > -1; i--)
 		a[i] = v[i];
